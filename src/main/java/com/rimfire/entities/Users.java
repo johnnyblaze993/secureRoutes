@@ -7,7 +7,7 @@ import java.util.UUID;
 
 
 @MappedEntity
-public record User (
+public record Users (
     @Id @NotNull UUID id,
     @NotNull String username,
     @NotNull String password

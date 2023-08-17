@@ -1,6 +1,6 @@
 package com.rimfire.controllers;
 
-import com.rimfire.entities.User;
+import com.rimfire.entities.Users;
 import com.rimfire.repositories.UserRepository;
 
 import io.micronaut.data.exceptions.DataAccessException;
@@ -23,24 +23,24 @@ public class UserController {
     }
     
     @Get("/")
-    public Iterable<User> index() {
+    public Iterable<Users> index() {
         return userRepository.findAll();
     }
     
     @Get("/{id}")
-    public Optional<User> show(UUID id) {
+    public Optional<Users> show(UUID id) {
         return userRepository.findById(id);
     }
     
     @Post("/")
-    public User create(@Body User user) {
-        return userRepository.save(user);
+    public Users create(@Body Users users) {
+        return userRepository.save(users);
     }
     
     @Put("/{id}")
-    public User update(UUID id, @Body User user) {
+    public Users update(UUID id, @Body Users users) {
         // Since records are immutable, create a new instance with the desired values
-        User updatedUser = new User(id, user.username(), user.password());
+        Users updatedUser = new Users(id, users.username(), users.password());
         return userRepository.update(updatedUser);
     }
     
